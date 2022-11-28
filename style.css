@@ -42,7 +42,8 @@
   height: 30px;
 }
 
-.current-brush, .palette-color {
+.current-brush,
+.palette-color {
   width: 30px;
   height: 30px;
   border: 1px solid black;
@@ -62,21 +63,20 @@
 }
 
 .color-1 {
-
+  background-color: blue;
 }
 
 .color-2 {
-
+  background-color: cadetblue;
 }
 
 .color-3 {
-
+  background-color: lightcoral;
 }
 
 .color-4 {
-
+  background-color: black;
 }
 
 .color-5 {
-
 }

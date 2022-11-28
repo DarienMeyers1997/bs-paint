@@ -1,13 +1,13 @@
 /*******************
  * OUR HELPER CODE *
-*******************/
+ *******************/
 
 /*
  * Here we add the squares to the canvas dynamically.
  * You can mostly leave this section alone!
  * But if you want to change how wide the canvas is,
  * there are just two steps:
- * 
+ *
  * 1. Change the `gridWidth` value below.
  * 2. Change the `grid-template-rows` and
  * `grid-template-columns` to match.
@@ -18,9 +18,9 @@
 const gridWidth = 10;
 let count = 0;
 while (count <= gridWidth * gridWidth) {
-  const canvas = document.querySelector('.canvas');
-  const div = document.createElement('div');
-  div.className = 'square color-5';
+  const canvas = document.querySelector(".canvas");
+  const div = document.createElement("div");
+  div.className = "square color-5";
   canvas.appendChild(div);
   count++;
 }
@@ -44,16 +44,18 @@ while (count <= gridWidth * gridWidth) {
 
 /***********
  * QUERIES *
-***********/
-
+ ***********/
+let brush = document.querySelector(".current-brush");
+let palette = document.querySelectorAll(".palette div");
+let canvasSqaures = document.querySelectorAll(".canvas div");
+let app = document.querySelector(".app");
+let isMouseDown = false;
 // Add queries for all your squares, palette colors, and brush here.
 // (Note the singular or plural used in that sentence!)
 
-
-
 /****************************
  * EVENT LISTENER FUNCTIONS *
-****************************/
+ ****************************/
 
 // Now add some functions to handle clicking one particular square
 // and clicking one particular palette color. You can leave them
@@ -61,11 +63,45 @@ while (count <= gridWidth * gridWidth) {
 // run as event listeners (after the next step is set up) isn't a
 // bad idea for testing purposes.
 
+brush.addEventListener("click", function () {
+  console.log("brush!");
+});
 
+for (let i = 0; i < palette.length; i++) {
+  palette[i].addEventListener("click", function () {
+    console.log(palette[i].classList);
+    brush.classList.replace(brush.classList[1], palette[i].classList[1]);
+  });
+}
+for (let sqaure of canvasSqaures) {
+  //   sqaure.addEventListener("click", function () {
+  //     sqaure.classList.replace(sqaure.classList[1], brush.classList[1]);
+  //   });
+  sqaure.addEventListener("mouseenter", function () {
+    if (isMouseDown === true) {
+      sqaure.classList.replace(sqaure.classList[1], brush.classList[1]);
+    }
+  });
+}
+
+app.addEventListener("mousedown", function () {
+  console.log("Mouse is down");
+  isMouseDown = true;
+  console.log("isMouseDown: " + isMouseDown);
+});
+
+app.addEventListener("mouseup", function () {
+  console.log("Mouse is down");
+  isMouseDown = false;
+  console.log("isMouseDown: " + isMouseDown);
+});
+
+//mousedown - checks if user left clicks and holds
+//mouseup - checks for when user releases that left click
 
 /**************************
  * WIRING IT ALL TOGETHER *
-**************************/
+ **************************/
 
 // Now: wiring up our event listeners to our html node elements.
 // You'll need to add the appropriate event listener for each
